@@ -1,6 +1,12 @@
+import Gallery from "../../components/Home/Gallery"
+import GalleryCopy from "../../components/Home/Gallerycopy"
+
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+        <Gallery/>
+        <GalleryCopy/>
+    </div>
   )
 }
 
