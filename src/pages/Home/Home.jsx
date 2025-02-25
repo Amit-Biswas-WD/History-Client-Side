@@ -1,13 +1,15 @@
-import Gallery from "../../components/Home/Gallery"
-import GalleryCopy from "../../components/Home/Gallerycopy"
+import Gallery from "../../components/Home/Gallery";
+import GalleryCopy from "../../components/Home/Gallerycopy";
+import History from "../../components/Home/History/History";
 
 const Home = () => {
   return (
     <div>
-        <Gallery/>
-        <GalleryCopy/>
+      <History />
+      <Gallery />
+      <GalleryCopy />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
