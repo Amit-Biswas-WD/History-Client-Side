@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.8",
+    "dotenv": "^16.4.7",
+    "firebase": "^11.4.0",
     "framer-motion": "^12.4.7",
     "localforage": "^1.10.0",
     "lucide-react": "^0.476.0",
@@ -19,6 +21,7 @@
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.2.0",
+    "react-toastify": "^11.0.5",
     "sort-by": "^1.2.0",
     "swiper": "^11.2.4",
     "tailwindcss": "^4.0.8"

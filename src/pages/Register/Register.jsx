@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import Google from "../../shared/Google";
+import useAuth from "./../../hooks/useAuth";
 
 const Register = () => {
+  const { createUser } = useAuth();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const from = e.target;
@@ -10,6 +14,14 @@ const Register = () => {
     const password = from.password.value;
     const valueInfo = { name, email, photo, password };
     console.log("User Registered:", valueInfo);
+
+    createUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   return (
@@ -26,9 +38,17 @@ const Register = () => {
 
         {/* Right Side - Form */}
         <div className="w-full md:w-1/2 p-8">
-          <h2 className="text-2xl font-bold text-center text-gray-700">
+          <h2 className="text-2xl font-bold text-center text-gray-700 mb-8">
             Register
           </h2>
+          <div className="flex justify-center text-center items-center">
+            <Google />
+          </div>
+          <div className="flex justify-center items-center gap-8 mt-8">
+            <hr className="w-40 text-gray-700" />
+            <span className="text-lg font-semibold text-gray-700">or</span>
+            <hr className="w-40 text-gray-700" />
+          </div>
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             {/* Name */}
             <div>

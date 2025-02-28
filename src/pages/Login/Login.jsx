@@ -25,7 +25,7 @@ const Login = () => {
         {/* Right Side - Form */}
         <div className="w-full md:w-1/2 p-8">
           <h2 className="text-2xl font-bold text-center text-gray-700">
-            Register
+            Login
           </h2>
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             {/* Email */}
