@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
+import Google from "../../shared/Google";
+import useAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  const { loginUser } = useAuth();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const from = e.target;
@@ -8,6 +13,15 @@ const Login = () => {
     const password = from.password.value;
     const valueInfo = { email, password };
     console.log("User Logged:", valueInfo);
+
+    loginUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+        toast("Welcome Login Successfully!");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   return (
@@ -24,9 +38,17 @@ const Login = () => {
 
         {/* Right Side - Form */}
         <div className="w-full md:w-1/2 p-8">
-          <h2 className="text-2xl font-bold text-center text-gray-700">
-            Login
+          <h2 className="text-2xl font-bold text-center text-gray-700 mb-8">
+            Welcome back
           </h2>
+          <div className="flex justify-center text-center items-center">
+            <Google />
+          </div>
+          <div className="flex justify-center items-center gap-8 mt-8">
+            <hr className="w-40 text-gray-700" />
+            <span className="text-lg font-semibold text-gray-700">or</span>
+            <hr className="w-40 text-gray-700" />
+          </div>
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             {/* Email */}
             <div>

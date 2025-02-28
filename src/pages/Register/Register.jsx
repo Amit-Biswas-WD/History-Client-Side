@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Google from "../../shared/Google";
 import useAuth from "./../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const { createUser } = useAuth();
@@ -18,6 +19,7 @@ const Register = () => {
     createUser(email, password)
       .then((res) => {
         console.log(res.user);
+        toast("Register Successfully!");
       })
       .catch((error) => {
         console.log(error.message);
