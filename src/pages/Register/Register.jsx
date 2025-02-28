@@ -30,7 +30,7 @@ const Register = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
       <div className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row w-full max-w-4xl">
         {/* Left Side - Image */}
-        <div className="hidden md:flex md:w-1/2 bg-blue-500 items-center justify-center p-8">
+        <div className="hidden md:flex md:w-1/2 bg-gray-500 items-center justify-center p-8">
           <img
             src="https://i.ibb.co.com/C5tKvrVS/registration.jpg"
             alt="Registration"

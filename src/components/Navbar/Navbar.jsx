@@ -1,9 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useAuth();
 
   const navItems = [
     { path: "/", label: "Home" },
@@ -41,12 +43,21 @@ const Navbar = () => {
 
           {/* Login Button (Desktop) */}
           <div className="hidden md:block">
-            <NavLink
-              to="/login"
-              className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded"
-            >
-              Login
-            </NavLink>
+            {user?.email ? (
+              <NavLink
+                to="/login"
+                className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded"
+              >
+                Login
+              </NavLink>
+            ) : (
+              <NavLink
+                to="/register"
+                className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded"
+              >
+                Register
+              </NavLink>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
