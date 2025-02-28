@@ -5,13 +5,23 @@ import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
 
   const navItems = [
     { path: "/", label: "Home" },
     { path: "/all-artifacts", label: "All Artifacts" },
     { path: "/add-artifacts", label: "Add Artifacts" },
   ];
+
+  const handleLogOut = () => {
+    logOut()
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -44,18 +54,18 @@ const Navbar = () => {
           {/* Login Button (Desktop) */}
           <div className="hidden md:block">
             {user?.email ? (
+              <button
+                onClick={handleLogOut}
+                className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded"
+              >
+                Log Out
+              </button>
+            ) : (
               <NavLink
                 to="/login"
                 className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded"
               >
                 Login
-              </NavLink>
-            ) : (
-              <NavLink
-                to="/register"
-                className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded"
-              >
-                Register
               </NavLink>
             )}
           </div>
