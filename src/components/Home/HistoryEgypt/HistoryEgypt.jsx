@@ -1,3 +1,6 @@
+import { motion } from "framer-motion";
+import { FaArrowRight } from "react-icons/fa";
+
 const HistoryEgypt = () => {
   return (
     <div className="md:grid md:grid-cols-2 gap-10 container mx-auto mb-20 mt-50">
@@ -22,10 +25,16 @@ const HistoryEgypt = () => {
           occa- sionally circumstances occur some great pleasure.
         </p>
         <button className="btn my-6 italic text-base font-semibold text-amber-400 flex items-center w-40 gap-4">
-          More Details
+          More Details <FaArrowRight />
         </button>
       </div>
-      <div className="order-last md:order-first col-span-1">
+      <motion.div
+        className="order-last md:order-first col-span-1"
+        initial={{ x: 200, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+      >
         <div className="bg-yellow-500 w-[400px] h-[350px] mx-auto flex relative">
           <div className="absolute -top-10 -left-[82px]">
             <img src="https://i.ibb.co.com/F45smnrn/about2.jpg" alt="" />
@@ -43,7 +52,7 @@ const HistoryEgypt = () => {
             <img src="https://i.ibb.co.com/BKgKBb7v/about1.jpg" alt="" />
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

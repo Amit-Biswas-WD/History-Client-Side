@@ -25,7 +25,7 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Navbar (Fixed) */}
+      {/* Navbar */}
       <nav className="bg-gray-800 text-white p-4 fixed top-0 left-0 w-full z-50">
         <div className="container mx-auto flex justify-between items-center">
           {/* Logo */}
@@ -53,21 +53,36 @@ const Navbar = () => {
 
           {/* Login Button (Desktop) */}
           <div className="hidden md:block">
-            {user?.email ? (
-              <button
-                onClick={handleLogOut}
-                className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded"
-              >
-                Log Out
-              </button>
-            ) : (
-              <NavLink
-                to="/login"
-                className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded"
-              >
-                Login
-              </NavLink>
-            )}
+            <div className="flex items-center gap-4">
+              {user?.email ? (
+                <img
+                  src={user.photoUrl}
+                  className="w-12 h-12 rounded-full border border-green-400"
+                  alt="Profile image not found"
+                />
+              ) : (
+                <img
+                  src="https://i.ibb.co.com/FqCkhLFs/download.jpg"
+                  className="w-12 h-12 rounded-full border border-red-400"
+                  alt="Profile image not found"
+                />
+              )}
+              {user?.email ? (
+                <button
+                  onClick={handleLogOut}
+                  className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded"
+                >
+                  Log Out
+                </button>
+              ) : (
+                <NavLink
+                  to="/login"
+                  className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded"
+                >
+                  Login
+                </NavLink>
+              )}
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
