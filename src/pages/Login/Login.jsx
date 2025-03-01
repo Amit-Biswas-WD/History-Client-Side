@@ -2,9 +2,13 @@ import { Link } from "react-router-dom";
 import Google from "../../shared/Google";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
+import { useState } from "react";
+import { IoIosEye } from "react-icons/io";
+import { FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const { loginUser } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -66,12 +70,18 @@ const Login = () => {
             <div>
               <label className="block text-gray-700">Password</label>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Enter password"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:ring focus:ring-blue-300"
                 required
               />
+              <p
+                onClick={() => setShowPassword(!showPassword)}
+                className="btn btn-xs absolute mt-4 right-[280px]"
+              >
+                {showPassword ? <IoIosEye /> : <FaEyeSlash/>}
+              </p>
             </div>
 
             {/* Submit Button */}
