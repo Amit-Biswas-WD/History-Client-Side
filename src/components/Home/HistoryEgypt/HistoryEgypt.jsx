@@ -3,7 +3,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 const HistoryEgypt = () => {
   return (
-    <div className="md:grid md:grid-cols-2 gap-10 container mx-auto mb-20 mt-50">
+    <div className="md:grid md:grid-cols-2 gap-10 container mx-auto mb-16 mt-50">
       <div className="order-last md:order-first col-span-1">
         <hr className="text-yellow-400 w-24" />
         <h3 className="text-base font-semibold uppercase my-4 text-gray-400">
