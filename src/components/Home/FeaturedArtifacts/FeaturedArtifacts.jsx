@@ -5,7 +5,7 @@ const FeaturedArtifacts = () => {
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    fetch("fakedata.json")
+    fetch("http://localhost:5000/history")
       .then((res) => res.json())
       .then((data) => setHistory(data));
   }, []);
@@ -25,8 +25,8 @@ const FeaturedArtifacts = () => {
         </p>
       </div>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8">
-        {history.slice(0, 6).map((artifact) => (
-          <FeaturedArtifact key={artifact._id} artifact={artifact}/>
+        {history.slice(0, 6).map((artifact, index) => (
+          <FeaturedArtifact key={index} artifact={artifact}/>
         ))}
       </div>
     </div>
