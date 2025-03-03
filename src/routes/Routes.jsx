@@ -5,32 +5,39 @@ import AllArtifacts from "../pages/AllArtifacts/AllArtifacts";
 import AddArtifacts from "../pages/AddArtifacts/AddArtifacts";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import FeaturedArtifactsDetails from "../components/FeaturedArtifactsDetails/FeaturedArtifactsDetails";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main/>,
+    element: <Main />,
     children: [
-        {
-            path: "/",
-            element: <Home/>
-        },
-        {
-            path: "/all-artifacts",
-            element: <AllArtifacts/>
-        },
-        {
-            path: "/add-artifacts",
-            element: <AddArtifacts/>
-        },
-        {
-            path: "/login",
-            element: <Login/>
-        },
-        {
-            path: "/register",
-            element: <Register/>
-        },
-    ]
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/all-artifacts",
+        element: <AllArtifacts />,
+      },
+      {
+        path: "/add-artifacts",
+        element: <AddArtifacts />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/details/:id",
+        element: <FeaturedArtifactsDetails />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/history/${params.id}`),
+      },
+    ],
   },
 ]);
