@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 const AddArtifacts = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -21,6 +23,21 @@ const AddArtifacts = () => {
       location,
     };
     console.log(valueInfo);
+
+    fetch("http://localhost:5000/artifacts", {
+      method: "POST",
+      body: JSON.stringify(valueInfo),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          toast("Your data added successfully!");
+        }
+      });
   };
 
   return (
