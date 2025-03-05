@@ -12,7 +12,7 @@ const Gallery = () => {
       <div className="grid grid-cols-4  h-[50%]">
         <div className="col-span-2 relative overflow-hidden group">
           <img className="w-full h-full object-cover" src={img6} alt="" />
-          <div className="absolute inset-0 bg-yellow-500 opacity-0 group-hover:opacity-70 translate-x-[-100%] group-hover:translate-x-0 transition-all duration-800 text-center mx-auto items-center text-white text-2xl font-bold">
+          <div className="absolute inset-0 bg-yellow-500 opacity-0 group-hover:opacity-70 translate-x-[-100%] group-hover:translate-x-0 transition-all duration-800 text-center mx-auto items-center text-black text-2xl font-bold">
             <div className="flex justify-center text-center items-center">
               <CiLink className="w-20 h-auto font-bold" />
             </div>

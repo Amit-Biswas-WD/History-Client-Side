@@ -15,7 +15,7 @@ const FeaturedArtifacts = () => {
     <div className="my-20 container mx-auto">
       <div className="text-center">
         <h2 className="text-4xl font-semibold text-gray-700 my-8">
-          Featured Artifacts ({history.length})
+          Featured Artifacts
         </h2>
         <p className="text-base font-normal w-[900px] mx-auto text-gray-700 my-6">
           An artifact is a physical object produced at some time in the past,

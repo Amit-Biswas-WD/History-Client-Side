@@ -6,11 +6,8 @@ const FeaturedArtifactsDetails = () => {
 
   const { artifact_image, artifact_name, short_description, like_count } = data;
   return (
-    <div className="mt-20 container mx-auto">
-      <h2 className="text-2xl font-semibold">
-        FeaturedArtifactsDetails: {data.artifact_name}
-      </h2>
-      <div className="border border-gray-500 rounded-lg shadow-2xl p-4 my-8">
+    <div className="mt-30 container mx-auto">
+      <div className="border border-gray-500 rounded-lg shadow-2xl p-4 my-8 flex gap-8">
         <img
           src={artifact_image}
           alt={artifact_name}
