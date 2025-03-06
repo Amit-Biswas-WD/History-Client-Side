@@ -1,13 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import useAuth from "../../hooks/useAuth";
 
-const Navbar = () => {
+const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { user, logOut } = useAuth();
-  const dropdownRef = useRef(null);
 
   const navItems = [
     { path: "/", label: "Home" },
@@ -17,26 +16,9 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     logOut()
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
   };
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDropdownOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   return (
     <>
@@ -66,58 +48,62 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* Login Button (Desktop) */}
-          <div className="hidden md:block">
-            <div className="flex items-center gap-4 relative" ref={dropdownRef}>
-              {user?.email ? (
-                <>
-                  <button
-                    onClick={() => setDropdownOpen(!dropdownOpen)}
-                    className="focus:outline-none"
-                  >
-                    <img
-                      src={
-                        user.photoURL
-                          ? user.photoURL
-                          : "https://i.ibb.co/FqCkhLFs/download.jpg"
-                      }
-                      className="w-12 h-12 rounded-full border border-green-400 cursor-pointer"
-                      alt="Profile"
-                    />
-                  </button>
-
-                  {/* Dropdown Menu */}
-                  {dropdownOpen && (
-                    <div className="absolute  right-0 mt-[190px] w-60 bg-white text-black border rounded-lg shadow-lg">
-                      {/* User Email */}
-                      <div className="px-4 py-2 text-sm font-semibold bg-gray-100 rounded-t-lg">
-                        {user.email}
-                      </div>
-                      <button className="block w-full px-4 py-2 text-left hover:bg-gray-200">
-                        Like
-                      </button>
-                      <button className="block w-full px-4 py-2 text-left hover:bg-gray-200">
-                        My Add
-                      </button>
-                    </div>
-                  )}
-
+          {/* Profile Image with Dropdown */}
+          <div className="hidden md:block relative">
+            {user?.email ? (
+              <div>
+                {/* Image Button */}
+                <button
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                  className="focus:outline-none"
+                >
+                  <img
+                    src={
+                      user.photoUrl
+                        ? user.photoUrl
+                        : "https://i.ibb.co/FqCkhLFs/download.jpg"
+                    }
+                    className="w-12 h-12 rounded-full border border-green-400 cursor-pointer"
+                    alt="Profile"
+                  />
                   <button
                     onClick={handleLogOut}
-                    className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded"
+                    className="block w-full px-4 py-2 text-left text-red-600 hover:bg-red-100 rounded-b-lg"
                   >
-                    Log Out
+                    🚪 Log Out
                   </button>
-                </>
-              ) : (
-                <NavLink
-                  to="/login"
-                  className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded"
-                >
-                  Login
-                </NavLink>
-              )}
-            </div>
+                </button>
+
+                {/* Dropdown Menu */}
+                {dropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-44 bg-white text-black border rounded-lg shadow-lg">
+                    {/* User Email */}
+                    <div className="px-4 py-2 text-sm font-semibold bg-gray-100 rounded-t-lg">
+                      ✉ {user.email}
+                    </div>
+                    <button className="block w-full px-4 py-2 text-left hover:bg-gray-200">
+                      👍 Like
+                    </button>
+                    <button className="block w-full px-4 py-2 text-left hover:bg-gray-200">
+                      📌 My Add
+                    </button>
+                    <button
+                      onClick={handleLogOut}
+                      className="block w-full px-4 py-2 text-left text-red-600 hover:bg-red-100 rounded-b-lg"
+                    >
+                      🚪 Log Out
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <NavLink
+                to="/login"
+                className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded"
+              >
+                Login
+              </NavLink>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -178,4 +164,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavBar;

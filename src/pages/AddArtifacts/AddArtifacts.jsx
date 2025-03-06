@@ -114,7 +114,7 @@ const AddArtifacts = () => {
           <div className="w-full">
             <label className="fieldset-label font-bold my-2">Image</label>
             <input
-              type="text"
+              type="file"
               name="photo"
               className="input w-full"
               placeholder="Image"
