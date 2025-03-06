@@ -101,12 +101,16 @@ const Navbar = () => {
                       <div className="px-4 py-2 text-sm font-semibold bg-gray-100 rounded-t-lg">
                         {user.email}
                       </div>
-                      <button className="block w-full px-4 py-2 text-left hover:bg-gray-200">
-                        Like
-                      </button>
-                      <button className="block w-full px-4 py-2 text-left hover:bg-gray-200">
-                        My Add
-                      </button>
+                      <Link to={`/like`}>
+                        <button className="block w-full px-4 py-2 text-left hover:bg-gray-200">
+                          Like
+                        </button>
+                      </Link>
+                      <Link to={`/my-add`}>
+                        <button className="block w-full px-4 py-2 text-left hover:bg-gray-200">
+                          My Add
+                        </button>
+                      </Link>
                     </div>
                   )}
 

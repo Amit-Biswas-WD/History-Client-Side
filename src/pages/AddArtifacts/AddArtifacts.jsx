@@ -12,6 +12,7 @@ const AddArtifacts = () => {
     const discoveredAt = from.discoveredAt.value;
     const photo = from.photo.value;
     const location = from.location.value;
+    const discovered = from.discovered.value;
     const valueInfo = {
       name,
       email,
@@ -21,6 +22,7 @@ const AddArtifacts = () => {
       discoveredAt,
       photo,
       location,
+      discovered,
     };
     console.log(valueInfo);
 
@@ -59,7 +61,7 @@ const AddArtifacts = () => {
               type="email"
               name="email"
               className="input w-full"
-              placeholder="Name"
+              placeholder="Email"
             />
           </div>
         </div>
@@ -131,6 +133,15 @@ const AddArtifacts = () => {
               placeholder="Present Location"
             />
           </div>
+        </div>
+        <div className="w-full my-8">
+          <label className="fieldset-label font-bold my-2">Discovered By</label>
+          <input
+            type="text"
+            name="discovered"
+            className="input w-full"
+            placeholder="Discovered"
+          />
         </div>
         <button className="btn btn-primary w-full">Add Artifact</button>
       </form>
