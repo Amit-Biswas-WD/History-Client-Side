@@ -8,6 +8,7 @@ const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { user, logOut } = useAuth();
   const dropdownRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   const navItems = [
     { path: "/", label: "Home" },
@@ -73,17 +74,24 @@ const Navbar = () => {
                 <>
                   <button
                     onClick={() => setDropdownOpen(!dropdownOpen)}
-                    className="focus:outline-none"
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                    className="relative focus:outline-none"
                   >
                     <img
                       src={
-                        user.photoURL
+                        user?.photoURL
                           ? user.photoURL
                           : "https://i.ibb.co/FqCkhLFs/download.jpg"
                       }
                       className="w-12 h-12 rounded-full border border-green-400 cursor-pointer"
                       alt="Profile"
                     />
+                    {isHovered && (
+                      <span className="absolute right-10 w-14 h-auto p-4 transform -translate-x-1/2 bottom-0 bg-black text-white text-xs px-2 py-1 rounded">
+                        Click Me
+                      </span>
+                    )}
                   </button>
 
                   {/* Dropdown Menu */}
