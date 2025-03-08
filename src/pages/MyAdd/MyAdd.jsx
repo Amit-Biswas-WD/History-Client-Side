@@ -1,5 +1,6 @@
 import MyAddRow from "./MyAddRow";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const MyAdd = () => {
   const [addData, setAddData] = useState([]);
@@ -8,10 +9,39 @@ const MyAdd = () => {
     fetch("http://localhost:5000/artifacts")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setAddData(data);
       });
   }, []);
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/artifacts/${id}`, { method: "DELETE" })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+              const remaining = addData.filter((data) => data._id !== id);
+              setAddData(remaining);
+            }
+          });
+      }
+    });
+  };
+
   return (
     <div className="mt-24 mb-8 container mx-auto">
       <div className="overflow-x-auto">
@@ -28,7 +58,11 @@ const MyAdd = () => {
           </thead>
           <tbody>
             {addData.map((data) => (
-              <MyAddRow key={data._id} data={data} />
+              <MyAddRow
+                key={data._id}
+                data={data}
+                handleDelete={handleDelete}
+              />
             ))}
           </tbody>
         </table>

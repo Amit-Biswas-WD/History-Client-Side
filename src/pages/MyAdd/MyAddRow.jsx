@@ -1,4 +1,4 @@
-const MyAddRow = ({ data }) => {
+const MyAddRow = ({ data, handleDelete }) => {
   const { _id, photo, name } = data;
   return (
     <tr>
@@ -11,7 +11,12 @@ const MyAddRow = ({ data }) => {
         <button className="btn border-green-500">Update</button>
       </td>
       <th>
-        <button className="btn border-red-500">Delete</button>
+        <button
+          onClick={() => handleDelete(_id)}
+          className="btn border-red-500"
+        >
+          Delete
+        </button>
       </th>
     </tr>
   );
