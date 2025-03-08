@@ -1,6 +1,6 @@
 const AllArtifacts = () => {
   return (
-    <div className="mt-20">
+    <div className="mt-20 container mx-auto">
       <h2 className="text-xl font-semibold">AllArtifacts</h2>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,

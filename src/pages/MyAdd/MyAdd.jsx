@@ -1,4 +1,17 @@
+import MyAddRow from "./MyAddRow";
+import { useEffect, useState } from "react";
+
 const MyAdd = () => {
+  const [addData, setAddData] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/artifacts")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setAddData(data);
+      });
+  }, []);
   return (
     <div className="mt-24 mb-8 container mx-auto">
       <div className="overflow-x-auto">
@@ -14,23 +27,9 @@ const MyAdd = () => {
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-            <tr>
-              <td>
-                <img
-                  src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                  alt="Avatar Tailwind CSS Component"
-                />
-              </td>
-              <td>This is title</td>
-              <td>67c817ba64e5caf2ed683d65</td>
-              <td>
-                <button className="btn border-green-500">Update</button>
-              </td>
-              <th>
-                <button className="btn border-red-500">Delete</button>
-              </th>
-            </tr>
+            {addData.map((data) => (
+              <MyAddRow key={data._id} data={data} />
+            ))}
           </tbody>
         </table>
       </div>
