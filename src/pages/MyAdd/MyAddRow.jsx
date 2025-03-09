@@ -1,5 +1,8 @@
-const MyAddRow = ({ data, handleDelete }) => {
+import { Link } from "react-router-dom";
+
+const MyAddRow = ({ data, handleDelete, handleUpdate }) => {
   const { _id, photo, name } = data;
+
   return (
     <tr>
       <td>
@@ -8,7 +11,14 @@ const MyAddRow = ({ data, handleDelete }) => {
       <td>{name}</td>
       <td>{_id}</td>
       <td>
-        <button className="btn border-green-500">Update</button>
+        <Link to={`/update/${_id}`}>
+          <button
+            onClick={() => handleUpdate(_id)}
+            className="btn border-green-500"
+          >
+            Update
+          </button>
+        </Link>
       </td>
       <th>
         <button

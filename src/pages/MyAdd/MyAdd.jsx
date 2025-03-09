@@ -14,6 +14,7 @@ const MyAdd = () => {
   }, []);
 
   const handleDelete = (id) => {
+    console.log(id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -42,6 +43,10 @@ const MyAdd = () => {
     });
   };
 
+  const handleUpdate = (id) => {
+    console.log(id);
+  };
+
   return (
     <div className="mt-24 mb-8 container mx-auto">
       <div className="overflow-x-auto">
@@ -62,6 +67,7 @@ const MyAdd = () => {
                 key={data._id}
                 data={data}
                 handleDelete={handleDelete}
+                handleUpdate={handleUpdate}
               />
             ))}
           </tbody>

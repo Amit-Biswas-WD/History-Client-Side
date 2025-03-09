@@ -8,6 +8,7 @@ import Register from "../pages/Register/Register";
 import FeaturedArtifactsDetails from "../components/FeaturedArtifactsDetails/FeaturedArtifactsDetails";
 import Like from "../pages/Like/Like";
 import MyAdd from "../pages/MyAdd/MyAdd";
+import Update from "../pages/MyAdd/Update/Update";
 
 export const router = createBrowserRouter([
   {
@@ -42,11 +43,17 @@ export const router = createBrowserRouter([
       },
       {
         path: "/like",
-        element: <Like/>
+        element: <Like />,
       },
       {
         path: "/my-add",
-        element: <MyAdd/>
+        element: <MyAdd />,
+      },
+      {
+        path: "/update/:id",
+        element: <Update />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/artifacts/${params.id}`),
       },
     ],
   },
