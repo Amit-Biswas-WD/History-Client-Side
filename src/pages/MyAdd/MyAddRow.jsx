@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-const MyAddRow = ({ data, handleDelete, handleUpdate }) => {
-  const { _id, photo, name } = data;
+const MyAddRow = ({ data, handleDelete }) => {
+  const { _id, email, photo, name } = data;
 
   return (
     <tr>
@@ -9,11 +9,11 @@ const MyAddRow = ({ data, handleDelete, handleUpdate }) => {
         <img src={photo} alt="not found" className="w-18 h-18" />
       </td>
       <td>{name}</td>
+      <td>{email}</td>
       <td>{_id}</td>
       <td>
         <Link to={`/update/${_id}`}>
           <button
-            onClick={() => handleUpdate(_id)}
             className="btn border-green-500"
           >
             Update

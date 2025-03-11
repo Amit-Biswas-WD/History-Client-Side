@@ -9,6 +9,7 @@ import FeaturedArtifactsDetails from "../components/FeaturedArtifactsDetails/Fea
 import Like from "../pages/Like/Like";
 import MyAdd from "../pages/MyAdd/MyAdd";
 import Update from "../pages/MyAdd/Update/Update";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -25,7 +26,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/add-artifacts",
-        element: <AddArtifacts />,
+        element: (
+          <PrivateRoutes>
+            <AddArtifacts />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/login",

@@ -13,7 +13,7 @@ const Navbar = () => {
   const navItems = [
     { path: "/", label: "Home" },
     { path: "/all-artifacts", label: "All Artifacts" },
-    { path: "/add-artifacts", label: "Add Artifacts" },
+    ...(user ? [{ path: "/add-artifacts", label: "Add Artifacts" }] : []),
   ];
 
   const handleLogOut = () => {

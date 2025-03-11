@@ -1,6 +1,10 @@
 import { toast } from "react-toastify";
+import useAuth from "../../hooks/useAuth";
 
 const AddArtifacts = () => {
+  const { user } = useAuth();
+  const { email } = user;
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const from = event.target;
@@ -60,6 +64,7 @@ const AddArtifacts = () => {
             <input
               type="email"
               name="email"
+              defaultValue={email}
               className="input w-full"
               placeholder="Email"
             />

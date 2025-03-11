@@ -1,17 +1,20 @@
 import MyAddRow from "./MyAddRow";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const MyAdd = () => {
+  const { user } = useAuth();
   const [addData, setAddData] = useState([]);
+  console.log(addData);
 
   useEffect(() => {
-    fetch("http://localhost:5000/artifacts")
+    fetch(`http://localhost:5000/artifacts?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setAddData(data);
       });
-  }, []);
+  }, [user]);
 
   const handleDelete = (id) => {
     console.log(id);
@@ -43,10 +46,6 @@ const MyAdd = () => {
     });
   };
 
-  const handleUpdate = (id) => {
-    console.log(id);
-  };
-
   return (
     <div className="mt-24 mb-8 container mx-auto">
       <div className="overflow-x-auto">
@@ -56,6 +55,7 @@ const MyAdd = () => {
             <tr>
               <th>Image</th>
               <th>Title</th>
+              <th>Email</th>
               <th>ID</th>
               <th>Update</th>
               <th>Delete</th>
@@ -67,7 +67,6 @@ const MyAdd = () => {
                 key={data._id}
                 data={data}
                 handleDelete={handleDelete}
-                handleUpdate={handleUpdate}
               />
             ))}
           </tbody>
