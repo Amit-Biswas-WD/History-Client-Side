@@ -6,7 +6,6 @@ import useAuth from "../../hooks/useAuth";
 const MyAdd = () => {
   const { user } = useAuth();
   const [addData, setAddData] = useState([]);
-  console.log(addData);
 
   useEffect(() => {
     fetch(`http://localhost:5000/artifacts?email=${user?.email}`)

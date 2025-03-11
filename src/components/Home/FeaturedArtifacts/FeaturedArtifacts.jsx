@@ -3,13 +3,21 @@ import FeaturedArtifact from "./FeaturedArtifact";
 
 const FeaturedArtifacts = () => {
   const [history, setHistory] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(6);
 
   useEffect(() => {
     fetch("http://localhost:5000/history")
       .then((res) => res.json())
       .then((data) => setHistory(data));
   }, []);
-  console.log(history);
+
+  const handleSeeMore = () => {
+    setVisibleCount((prevCount) => Math.min(prevCount + 6, 12));
+  };
+
+  const handleSeeLess = () => {
+    setVisibleCount(6);
+  };
 
   return (
     <div className="my-20 container mx-auto">
@@ -25,9 +33,27 @@ const FeaturedArtifacts = () => {
         </p>
       </div>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8">
-        {history.slice(0, 6).map((artifact, index) => (
-          <FeaturedArtifact key={index} artifact={artifact}/>
+        {history.slice(0, visibleCount).map((artifact, index) => (
+          <FeaturedArtifact key={index} artifact={artifact} />
         ))}
+      </div>
+      <div className="text-center mt-8">
+        {history.length > 6 && visibleCount < 12 && (
+          <button
+            onClick={handleSeeMore}
+            className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-700 mx-2"
+          >
+            See More
+          </button>
+        )}
+        {visibleCount > 6 && (
+          <button
+            onClick={handleSeeLess}
+            className="px-6 py-2 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-700 mx-2"
+          >
+            See Less
+          </button>
+        )}
       </div>
     </div>
   );
