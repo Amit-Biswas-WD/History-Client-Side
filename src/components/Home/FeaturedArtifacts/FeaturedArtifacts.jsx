@@ -25,7 +25,7 @@ const FeaturedArtifacts = () => {
         <h2 className="text-4xl font-semibold text-gray-700 my-8">
           Featured Artifacts
         </h2>
-        <p className="text-base font-normal w-[900px] mx-auto text-gray-700 my-6">
+        <p className="text-base font-normal md:w-[900px] sm:w-[640px] mx-auto text-gray-700 my-6">
           An artifact is a physical object produced at some time in the past,
           and attesting to a given set of practices, thinking, and ways of
           viewing the world, and whose importance will be defined by present and

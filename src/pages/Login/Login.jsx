@@ -1,14 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Google from "../../shared/Google";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { IoIosEye } from "react-icons/io";
 import { FaEyeSlash } from "react-icons/fa";
+import axios from "axios";
 
 const Login = () => {
   const { loginUser } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,8 +23,14 @@ const Login = () => {
 
     loginUser(email, password)
       .then((res) => {
-        console.log(res.user);
-        toast("Welcome Login Successfully!");
+        console.log(res.user.email);
+        const user = { email: email };
+        axios
+          .post("http://localhost:5000/jwt", user, { withCredentials: true })
+          .then((res) => {
+            console.log(res.data);
+          });
+        // toast("Welcome Login Successfully!");
       })
       .catch((error) => {
         console.log(error.message);
@@ -80,7 +89,7 @@ const Login = () => {
                 onClick={() => setShowPassword(!showPassword)}
                 className="btn btn-xs absolute mt-4 right-[280px]"
               >
-                {showPassword ? <IoIosEye /> : <FaEyeSlash/>}
+                {showPassword ? <IoIosEye /> : <FaEyeSlash />}
               </p>
             </div>
 

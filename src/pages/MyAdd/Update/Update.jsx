@@ -16,7 +16,7 @@ const Update = () => {
     discovered,
   } = data;
 
-  const handleSubmit = (event) => {
+  const handleUpdate = (event) => {
     event.preventDefault();
     const from = event.target;
     const name = from.name.value;
@@ -57,7 +57,7 @@ const Update = () => {
       <h2 className="text-2xl font-semibold text-center">
         Update Your Add Value Details: {data.name}
       </h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleUpdate}>
         <div className="flex items-center gap-10 w-full my-8">
           <div className="w-[48%]">
             <label className="fieldset-label font-bold my-2">Name</label>
@@ -139,7 +139,7 @@ const Update = () => {
           <div className="w-full">
             <label className="fieldset-label font-bold my-2">Image</label>
             <input
-              type="file"
+              type="url"
               name="photo"
               defaultValue={photo}
               className="input w-full"

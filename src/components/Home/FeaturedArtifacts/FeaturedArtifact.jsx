@@ -7,7 +7,7 @@ const FeaturedArtifact = ({ artifact }) => {
 
   return (
     <div>
-      <div className="col-span-1 border border-gray-500 rounded-lg shadow-2xl p-4">
+      <div className="col-span-1 border border-gray-300 rounded-lg shadow-2xl p-4">
         <img
           src={artifact_image}
           alt={artifact_name}

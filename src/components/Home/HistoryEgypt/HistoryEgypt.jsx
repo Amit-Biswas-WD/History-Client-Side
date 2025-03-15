@@ -3,7 +3,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 const HistoryEgypt = () => {
   return (
-    <div className="md:grid md:grid-cols-2 gap-10 container mx-auto mb-16 mt-50">
+    <div className="grid lg:grid-cols-2 gap-10 container mx-auto mb-16 mt-50">
       <div className="order-last md:order-first col-span-1">
         <hr className="text-yellow-400 w-24" />
         <h3 className="text-base font-semibold uppercase my-4 text-gray-400">
@@ -29,7 +29,7 @@ const HistoryEgypt = () => {
         </button>
       </div>
       <motion.div
-        className="order-last md:order-first col-span-1"
+        className="order-last md:order-first col-span-1 sm:mt-40 sm:mb-30"
         initial={{ x: 200, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 1 }}
@@ -41,7 +41,7 @@ const HistoryEgypt = () => {
           </div>
           <div className="absolute -top-32 -right-[58px] border-2 border-gray-200 w-[370px] h-[350px]">
             <h2 className="text-6xl mr-6 mt-3 font-semibold flex justify-end items-center text-yellow-600 gap-2">
-              E{" "}
+              E
               <div className="flex flex-col items-center">
                 <span className="text-lg">stablished</span>
                 <span className="text-lg">1955</span>

@@ -2,18 +2,26 @@ import MyAddRow from "./MyAddRow";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import axios from "axios";
 
 const MyAdd = () => {
   const { user } = useAuth();
   const [addData, setAddData] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/artifacts?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setAddData(data);
-      });
-  }, [user]);
+    // fetch(`http://localhost:5000/artifacts?email=${user?.email}`)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setAddData(data);
+    //   });
+
+    axios
+      .get(`http://localhost:5000/artifacts?email=${user?.email}`, {
+        withCredentials: true,
+      })
+      // .then((res) => setAddData(res.data));
+      .then((res) => console.log(setAddData(res.data)));
+  }, [user?.email]);
 
   const handleDelete = (id) => {
     console.log(id);
