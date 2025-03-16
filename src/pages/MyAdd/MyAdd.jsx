@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyAdd = () => {
   const { user } = useAuth();
   const [addData, setAddData] = useState([]);
+  const axiosInstance = useAxiosSecure();
 
   useEffect(() => {
     // fetch(`http://localhost:5000/artifacts?email=${user?.email}`)
@@ -15,12 +17,17 @@ const MyAdd = () => {
     //     setAddData(data);
     //   });
 
-    axios
-      .get(`http://localhost:5000/artifacts?email=${user?.email}`, {
-        withCredentials: true,
-      })
-      .then((res) => setAddData(res.data));
-      
+    // axios
+    //   .get(`http://localhost:5000/artifacts?email=${user?.email}`, {
+    //     withCredentials: true,
+    //   })
+    //   .then((res) => setAddData(res.data));
+
+    axiosInstance.get(`/artifacts?email=${user?.email}`)
+    .then((res) => {
+      setAddData(res.data);
+    });
+
   }, [user?.email]);
 
   const handleDelete = (id) => {
