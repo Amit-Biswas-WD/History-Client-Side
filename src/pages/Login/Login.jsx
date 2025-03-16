@@ -29,8 +29,8 @@ const Login = () => {
           .post("http://localhost:5000/jwt", user, { withCredentials: true })
           .then((res) => {
             console.log(res.data);
+            toast("Welcome Login Successfully!");
           });
-        // toast("Welcome Login Successfully!");
       })
       .catch((error) => {
         console.log(error.message);

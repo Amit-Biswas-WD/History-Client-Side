@@ -1,6 +1,7 @@
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const Google = () => {
   const { google } = useAuth();
@@ -8,8 +9,11 @@ const Google = () => {
   const handleGoogle = () => {
     google()
       .then((result) => {
-        console.log(result.user);
-        toast("Sign up with Google Successfully!");
+        const user = { email: result.user.email };
+        axios.post("http://localhost:5000/jwt", user, { withCredentials: true }).then((res) => {
+          console.log(res.data);
+          toast("Sign up with Google Successfully!");
+        });
       })
       .catch((error) => {
         console.log(error);

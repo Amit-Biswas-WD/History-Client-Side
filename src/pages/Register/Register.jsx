@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import { FaEyeSlash } from "react-icons/fa";
 import { IoIosEye } from "react-icons/io";
+import axios from "axios";
 
 const Register = () => {
   const { createUser } = useAuth();
@@ -22,8 +23,14 @@ const Register = () => {
 
     createUser(email, password)
       .then((res) => {
-        console.log(res.user);
-        toast("Register Successfully!");
+        console.log(res.user.email);
+        const user = { email: email };
+        axios
+          .post("http://localhost:5000/jwt", user, { withCredentials: true })
+          .then((res) => {
+            console.log(res.data);
+            toast("Register Successfully!");
+          });
       })
       .catch((error) => {
         console.log(error.message);

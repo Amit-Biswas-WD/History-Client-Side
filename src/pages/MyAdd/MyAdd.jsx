@@ -19,8 +19,8 @@ const MyAdd = () => {
       .get(`http://localhost:5000/artifacts?email=${user?.email}`, {
         withCredentials: true,
       })
-      // .then((res) => setAddData(res.data));
-      .then((res) => console.log(setAddData(res.data)));
+      .then((res) => setAddData(res.data));
+      
   }, [user?.email]);
 
   const handleDelete = (id) => {
