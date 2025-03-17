@@ -59,8 +59,6 @@ export const router = createBrowserRouter([
         element: <Update />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/artifacts/${params.id}`),
-        // loader: ({ params }) =>
-        //   fetch(`http://localhost:5000/artifacts/${params.id}`),
       },
     ],
   },

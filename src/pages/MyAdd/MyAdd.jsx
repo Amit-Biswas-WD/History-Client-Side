@@ -2,33 +2,48 @@ import MyAddRow from "./MyAddRow";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
-import axios from "axios";
+// import axios from "axios";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyAdd = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const [addData, setAddData] = useState([]);
   const axiosInstance = useAxiosSecure();
 
+  const uri = `/artifacts?email=${user?.email}`;
+
+  // useEffect(() => {
+
+  //   axiosInstance.get(uri)
+  //   .then((res) => {
+  //     setAddData(res.data);
+
+  //   // fetch(`http://localhost:5000/artifacts?email=${user?.email}`)
+  //   //   .then((res) => res.json())
+  //   //   .then((data) => {
+  //   //     setAddData(data);
+  //   //   });
+
+  //   // axios
+  //   //   .get(`http://localhost:5000/artifacts?email=${user?.email}`, {
+  //   //     withCredentials: true,
+  //   //   })
+  //   //   .then((res) => setAddData(res.data));
+  //   });
+  // }, [uri, axiosInstance]);
+
   useEffect(() => {
-    // fetch(`http://localhost:5000/artifacts?email=${user?.email}`)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setAddData(data);
-    //   });
+    if (loading) return;
 
-    // axios
-    //   .get(`http://localhost:5000/artifacts?email=${user?.email}`, {
-    //     withCredentials: true,
-    //   })
-    //   .then((res) => setAddData(res.data));
-
-    axiosInstance.get(`/artifacts?email=${user?.email}`)
-    .then((res) => {
-      setAddData(res.data);
-    });
-
-  }, [user?.email]);
+    if (user?.email) {
+      axiosInstance
+        .get(`/artifacts?email=${user.email}`, { withCredentials: true })
+        .then((res) => setAddData(res.data))
+        .catch((err) => console.error(err));
+    } else {
+      console.log("User not logged in or data is not available.");
+    }
+  }, [user, axiosInstance, loading]);
 
   const handleDelete = (id) => {
     console.log(id);
