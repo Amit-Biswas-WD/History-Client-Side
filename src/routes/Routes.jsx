@@ -10,6 +10,7 @@ import Like from "../pages/Like/Like";
 import MyAdd from "../pages/MyAdd/MyAdd";
 import PrivateRoutes from "./PrivateRoutes";
 import Update from './../pages/MyAdd/Update/Update';
+import ArtifactDetails from "../pages/AllArtifacts/ArtifactDetails";
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +58,12 @@ export const router = createBrowserRouter([
       {
         path: "/update/:id",
         element: <Update />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/artifacts/${params.id}`),
+      },
+      {
+        path: "/artifactDetails/:id",
+        element: <ArtifactDetails />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/artifacts/${params.id}`),
       },

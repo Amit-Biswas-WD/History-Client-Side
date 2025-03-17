@@ -10,7 +10,7 @@ const MyAdd = () => {
   const [addData, setAddData] = useState([]);
   const axiosInstance = useAxiosSecure();
 
-  const uri = `/artifacts?email=${user?.email}`;
+  const url = `/artifacts?email=${user?.email}`;
 
   // useEffect(() => {
 
@@ -37,7 +37,7 @@ const MyAdd = () => {
 
     if (user?.email) {
       axiosInstance
-        .get(`/artifacts?email=${user.email}`, { withCredentials: true })
+        .get(url, { withCredentials: true })
         .then((res) => setAddData(res.data))
         .catch((err) => console.error(err));
     } else {
