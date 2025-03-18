@@ -1,34 +1,53 @@
+import { useEffect, useState } from "react";
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+
 const Like = () => {
+  const { user } = useAuth();
+  const [addData, setAddData] = useState([]);
+  const axiosInstance = useAxiosSecure();
+
+  const url = `/like?email=${user?.email}`;
+
+  useEffect(() => {
+    axiosInstance.get(url).then((res) => {
+      console.log(res.data);
+      setAddData(res.data);
+    });
+  }, [url, axiosInstance]);
+
   return (
-    <div className="container mx-auto mt-24 mb-4 grid md:grid-cols-2 sm:grid-cols-1 gap-8">
-      <div className="col-span-1 border border-gray-300 shadow-2xl rounded-lg p-8">
-        <img
-          src="https://th-thumbnailer.cdn-si-edu.com/wsQUWrO5N2HJSvn6Dow8omdoQbQ=/1000x750/filters:no_upscale()/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/a6/60/a660065e-a460-48f3-b1ad-21b19fb7d1bb/firstchristmascard.jpg"
-          alt=""
-        />
-        <div className="my-6">
-          <h2 className="text-2xl font-semibold my-2">Name: </h2>
-          <p className="text-base font-normal my-2">Artifact Type: </p>
-          <p className="text-base font-normal my-2">Historical Context: </p>
-          <p className="text-base font-normal my-2">Created At: </p>
-          <p className="text-base font-normal my-2">Discovered At: </p>
-          <p className="text-base font-normal my-2">Location: </p>
+    <div className="container mx-auto mt-30 mb-10 grid md:grid-cols-2 sm:grid-cols-1 gap-8">
+      {addData.map((data) => (
+        <div
+          key={data._id}
+          className="col-span-1 border border-gray-300 shadow-2xl rounded-lg p-8"
+        >
+          <img src={data.photo} alt="Image not found" className="w-full h-[400px]" />
+          <h2 className="text-3xl font-semibold mb-4 mt-8">Name: {data.name}</h2>
+          <div className="text-lg font-medium space-y-2">
+            <p>
+              Created At: <span className="font-normal">{data.createdAt}</span>
+            </p>
+            <p>
+              Discovered At: <span className="font-normal">{data.discoveredAt}</span>
+            </p>
+            <p>
+              Artifact Type: <span className="font-normal">{data.artifactType}</span>
+            </p>
+            <p>
+              Historical Context:{" "}
+              <span className="font-normal">{data.historicalContext}</span>
+            </p>
+            <p>
+              Location: <span className="font-normal">{data.location}</span>
+            </p>
+            <p>
+              Discovered: <span className="font-normal">{data.discovered}</span>
+            </p>
+          </div>
         </div>
-      </div>
-      <div className="col-span-1 border border-gray-300 shadow-2xl rounded-lg p-8">
-        <img
-          src="https://th-thumbnailer.cdn-si-edu.com/wsQUWrO5N2HJSvn6Dow8omdoQbQ=/1000x750/filters:no_upscale()/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/a6/60/a660065e-a460-48f3-b1ad-21b19fb7d1bb/firstchristmascard.jpg"
-          alt=""
-        />
-        <div className="my-6">
-          <h2 className="text-2xl font-semibold my-2">Name: </h2>
-          <p className="text-base font-normal my-2">Artifact Type: </p>
-          <p className="text-base font-normal my-2">Historical Context: </p>
-          <p className="text-base font-normal my-2">Created At: </p>
-          <p className="text-base font-normal my-2">Discovered At: </p>
-          <p className="text-base font-normal my-2">Location: </p>
-        </div>
-      </div>
+      ))}
     </div>
   );
 };
