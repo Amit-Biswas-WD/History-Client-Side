@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Google from "../../shared/Google";
 import useAuth from "./../../hooks/useAuth";
 import { toast } from "react-toastify";
@@ -10,6 +10,8 @@ import axios from "axios";
 const Register = () => {
   const { createUser } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +31,10 @@ const Register = () => {
           .post("http://localhost:5000/jwt", user, { withCredentials: true })
           .then((res) => {
             console.log(res.data);
-            toast("Register Successfully!");
+            if (res.data.success) {
+              navigate(location?.state ? location?.state : "/");
+              toast("Register Successfully!");
+            }
           });
       })
       .catch((error) => {

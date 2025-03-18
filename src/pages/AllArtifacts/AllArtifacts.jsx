@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import { FaRegHeart } from "react-icons/fa";
 
 const AllArtifacts = () => {
   const [artifacts, setArtifacts] = useState([]);
@@ -33,7 +34,7 @@ const AllArtifacts = () => {
               </Link>
               <div className="flex justify-between my-3">
                 <h2 className="text-3xl font-bold">{name}</h2>
-                <p className="text-lg font-normal">Like: 100</p>
+                <p className="text-lg font-normal"><FaRegHeart className="text-red-600"/></p>
               </div>
               <div className="flex justify-between text-lg font-medium">
                 <p>

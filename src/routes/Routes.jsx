@@ -9,7 +9,7 @@ import FeaturedArtifactsDetails from "../components/FeaturedArtifactsDetails/Fea
 import Like from "../pages/Like/Like";
 import MyAdd from "../pages/MyAdd/MyAdd";
 import PrivateRoutes from "./PrivateRoutes";
-import Update from './../pages/MyAdd/Update/Update';
+import Update from "./../pages/MyAdd/Update/Update";
 import ArtifactDetails from "../pages/AllArtifacts/ArtifactDetails";
 
 export const router = createBrowserRouter([
@@ -23,7 +23,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/all-artifacts",
-        element: <AllArtifacts />,
+        element: (
+          <PrivateRoutes>
+            <AllArtifacts />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/add-artifacts",
@@ -43,7 +47,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/details/:id",
-        element: <FeaturedArtifactsDetails />,
+        element: (
+          <PrivateRoutes>
+            <FeaturedArtifactsDetails />
+          </PrivateRoutes>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/history/${params.id}`),
       },

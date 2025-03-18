@@ -89,7 +89,7 @@ const Navbar = () => {
                     />
                     {isHovered && (
                       <span className="absolute right-10 w-14 h-auto p-4 transform -translate-x-1/2 bottom-0 bg-black text-white text-xs px-2 py-1 rounded">
-                        Click Me
+                        Click
                       </span>
                     )}
                   </button>

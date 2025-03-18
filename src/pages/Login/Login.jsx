@@ -29,7 +29,10 @@ const Login = () => {
           .post("http://localhost:5000/jwt", user, { withCredentials: true })
           .then((res) => {
             console.log(res.data);
-            toast("Welcome Login Successfully!");
+            if (res.data.success) {
+              navigate(location?.state ? location?.state : "/");
+              toast("Welcome Login Successfully!");
+            }
           });
       })
       .catch((error) => {
