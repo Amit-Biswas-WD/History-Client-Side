@@ -9,7 +9,6 @@ const AddArtifacts = () => {
     event.preventDefault();
     const from = event.target;
     const name = from.name.value;
-    const email = from.email.value;
     const artifactType = from.artifactType.value;
     const historicalContext = from.historicalContext.value;
     const createdAt = from.createdAt.value;
@@ -19,7 +18,7 @@ const AddArtifacts = () => {
     const discovered = from.discovered.value;
     const valueInfo = {
       name,
-      email,
+      email: email,
       artifactType,
       historicalContext,
       createdAt,
@@ -59,14 +58,16 @@ const AddArtifacts = () => {
               placeholder="Name"
             />
           </div>
+
           <div className="w-[48%]">
-            <label className="fieldset-label font-bold my-2">Email</label>
+            <label className="fieldset-label font-bold my-2">
+              Discovered By
+            </label>
             <input
-              type="email"
-              name="email"
-              defaultValue={email}
+              type="text"
+              name="discovered"
               className="input w-full"
-              placeholder="Email"
+              placeholder="Discovered"
             />
           </div>
         </div>
@@ -138,15 +139,6 @@ const AddArtifacts = () => {
               placeholder="Present Location"
             />
           </div>
-        </div>
-        <div className="w-full my-8">
-          <label className="fieldset-label font-bold my-2">Discovered By</label>
-          <input
-            type="text"
-            name="discovered"
-            className="input w-full"
-            placeholder="Discovered"
-          />
         </div>
         <button className="btn btn-primary w-full">Add Artifact</button>
       </form>

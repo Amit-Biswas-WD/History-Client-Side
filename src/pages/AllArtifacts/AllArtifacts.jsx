@@ -14,10 +14,7 @@ const AllArtifacts = () => {
   }, [axiosInstance]);
 
   return (
-    <div className="mt-20 container mx-auto">
-      <h2 className="text-xl font-semibold">
-        AllArtifacts: {artifacts.length}
-      </h2>
+    <div className="mt-30 mb-10 container mx-auto">
       <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-10">
         {artifacts.map((artifact) => {
           const { _id, photo, name, artifactType, historicalContext } =
